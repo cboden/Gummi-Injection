@@ -28,9 +28,6 @@
         if (!self.singletonCache) {
             id (^factoryBlock)(GIInjector *) = _object;
             self.singletonCache = factoryBlock(_injector);
-
-            Block_release((__bridge void*)_object);
-            _object = nil;
         }
 
         return self.singletonCache;
