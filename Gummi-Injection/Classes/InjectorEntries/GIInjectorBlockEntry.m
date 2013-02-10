@@ -38,7 +38,10 @@
     }
 
     id (^factoryBlock)(GIInjector *) = _object;
-    return factoryBlock(_injector);
+    id instance = factoryBlock(_injector);
+    [_injector injectIntoObject:instance];
+    
+    return instance;
 }
 
 @end
