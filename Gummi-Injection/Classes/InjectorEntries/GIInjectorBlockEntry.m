@@ -28,7 +28,6 @@
         if (!self.singletonCache) {
             id (^factoryBlock)(GIInjector *) = _object;
             self.singletonCache = factoryBlock(_injector);
-            [_injector injectIntoObject:self.singletonCache];
 
             Block_release((__bridge void*)_object);
             _object = nil;
@@ -38,10 +37,7 @@
     }
 
     id (^factoryBlock)(GIInjector *) = _object;
-    id instance = factoryBlock(_injector);
-    [_injector injectIntoObject:instance];
-    
-    return instance;
+    return factoryBlock(_injector);
 }
 
 @end
